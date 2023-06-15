@@ -1,5 +1,6 @@
-import "./globals.css";
 import { Saira } from "next/font/google";
+import { Header } from "@/components/Header";
+import "./globals.css";
 
 const saira = Saira({
   subsets: ["latin"],
@@ -11,7 +12,6 @@ export const metadata = {
   description: "Desafio Rocketseat para criação de um Ecommerce",
 };
 
-
 export default function RootLayout({
   children,
 }: {
@@ -19,7 +19,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-      <body className={saira.className}>{children}</body>
+      <body className={saira.className}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
