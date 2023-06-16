@@ -11,6 +11,7 @@ export const COLORS = {
   SHAPES: {
     one: "#FFFFFF",
     two: "#DCE2E5",
+    white_low:"#F5F5FA",
   },
   OTHERS: {
     delete: "#DE3838",
@@ -27,5 +28,6 @@ export const COLORS = {
   },
   ICONS: {
     gray_icon: "#737380",
+    gray_button: "#E9E9F0",
   },
 };
