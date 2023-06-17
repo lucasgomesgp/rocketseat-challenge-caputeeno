@@ -30,4 +30,8 @@ export const COLORS = {
     gray_icon: "#737380",
     gray_button: "#E9E9F0",
   },
+  FONT:{
+    gray: "#41414D",
+    black: "#09090A",
+  }
 };
