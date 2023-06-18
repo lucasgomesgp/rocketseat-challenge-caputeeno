@@ -1,3 +1,6 @@
+:root{
+  --bg-color: #F0F0F5;
+}
 * {
   box-sizing: border-box;
   padding: 0;
@@ -8,4 +11,5 @@ html,
 body {
   width: 100%;
   min-height: 100vh;
+  background-color: var(--bg-color);
 }

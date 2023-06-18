@@ -1,8 +1,11 @@
 import { COLORS } from "@/utils/colors-guide";
 import Image from "next/image";
+import Link from "next/link";
 import styled from "styled-components";
 
-const Container = styled.div``;
+const Container = styled(Link)`
+  text-decoration: none;
+`;
 const Img = styled(Image)`
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
