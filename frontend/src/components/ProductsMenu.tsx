@@ -5,7 +5,6 @@ import {
   ContainerFilters,
   FilterBy,
   Option,
-  
 } from "@/styles/ProductsMenu";
 import Pagination from "./Pagination";
 

@@ -1,10 +1,7 @@
 "use client";
+import BackToHome from "@/components/BackToHome";
 import {
   Container,
-  BackToHome,
-  BtnAddToCart,
-  Paragraph,
-  Img,
   TextButton,
   WrapperInfo,
   InfoProduct,
@@ -17,6 +14,7 @@ import {
   Details,
   TextArea,
   ImgProduct,
+  BtnAddToCart,
 } from "@/styles/Product";
 import { ShoppingBagOpen } from "@phosphor-icons/react";
 
@@ -29,16 +27,7 @@ interface Props {
 export default function Product({ params }: Props) {
   return (
     <Container>
-      <BackToHome href={"/"}>
-        <Img
-          alt="Icon back home"
-          src="/icons/arrow-back.svg"
-          width={32}
-          height={32}
-        />
-        <Paragraph>Voltar</Paragraph>
-      </BackToHome>
-
+     <BackToHome />
       <WrapperInfo>
         <ImgProduct
           src={

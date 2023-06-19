@@ -25,7 +25,7 @@ export function Header() {
             <MagnifyingGlass size={25} color={COLORS.ICONS.gray_icon} />
           </Button>
         </WrapperInput>
-        <CartItems>
+        <CartItems href={"/cart"}>
           <ShoppingBagOpen size={32} color={COLORS.ICONS.gray_icon} />
           <CircleCountItemsInCart> {items.length || 0}</CircleCountItemsInCart>
         </CartItems>
