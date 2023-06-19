@@ -43,6 +43,7 @@ const FilterBy = styled.select`
 
 const Option = styled.option`
   outline: none;
+  background-color: ${COLORS.SHAPES.one};
 `;
 
 

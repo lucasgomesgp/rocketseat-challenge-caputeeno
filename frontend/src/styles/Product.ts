@@ -1,5 +1,4 @@
 import { styled } from "styled-components";
-import Link from "next/link";
 import { COLORS } from "@/utils/colors-guide";
 import Image from "next/image";
 import { laptop, tablet } from "@/utils/break-points";
@@ -16,22 +15,6 @@ const Container = styled.main`
     padding: 0 10rem;
   }
 `;
-
-const BackToHome = styled(Link)`
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  margin-top: 1.5625rem;
-  margin-bottom: 1.375rem;
-  align-self: flex-start;
-`;
-
-const Paragraph = styled.p`
-  color: ${COLORS.TEXTS.texts};
-  font-weight: 400;
-`;
-
-const Img = styled(Image)``;
 
 const ImgProduct = styled(Image)`
   margin: 0 auto;
@@ -126,9 +109,6 @@ const Details = styled.p`
 `;
 export {
   Container,
-  BackToHome,
-  Paragraph,
-  Img,
   ImgProduct,
   BtnAddToCart,
   TextButton,

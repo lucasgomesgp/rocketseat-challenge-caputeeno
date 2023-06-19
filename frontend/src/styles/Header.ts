@@ -6,9 +6,9 @@ import { saira_stencil } from "@/fonts/siara-stencil";
 const Menu = styled.header`
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
-  padding: 1.18rem 0;
+  padding: 1.18rem 8rem;
   background-color: ${COLORS.SHAPES.one};
   
 `;
@@ -56,7 +56,7 @@ const InputSearch = styled.input`
   padding-left: 1rem;
 `;
 
-const CartItems = styled.button`
+const CartItems = styled(Link)`
   position: relative;
   background-color: transparent;
   border: none;
