@@ -29,6 +29,7 @@ export const COLORS = {
   ICONS: {
     gray_icon: "#737380",
     gray_button: "#E9E9F0",
+    gray_option: "#A8A8B3",
   },
   FONT:{
     gray: "#41414D",
