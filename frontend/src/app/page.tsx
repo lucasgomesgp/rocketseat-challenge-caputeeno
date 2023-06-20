@@ -15,6 +15,48 @@ export default function Home() {
           name="caneca"
           description="Caneca para Devs"
         />
+        <Card
+          id="1"
+          image_url="https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg"
+          name="caneca"
+          description="Caneca para Devs"
+        />
+        <Card
+          id="1"
+          image_url="https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg"
+          name="caneca"
+          description="Caneca para Devs"
+        />
+        <Card
+          id="1"
+          image_url="https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg"
+          name="caneca"
+          description="Caneca para Devs"
+        />
+        <Card
+          id="1"
+          image_url="https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg"
+          name="caneca"
+          description="Caneca para Devs"
+        />
+        <Card
+          id="1"
+          image_url="https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg"
+          name="caneca"
+          description="Caneca para Devs"
+        />
+        <Card
+          id="1"
+          image_url="https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg"
+          name="caneca"
+          description="Caneca para Devs"
+        />
+        <Card
+          id="1"
+          image_url="https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg"
+          name="caneca"
+          description="Caneca para Devs"
+        />
       </ContainerCards>
       <WrapperPag>
         <HiddenDiv />

@@ -1,4 +1,4 @@
-import { mobile } from "@/utils/break-points";
+import { big_laptop, laptop, mobile, tablet } from "@/utils/break-points";
 import styled from "styled-components";
 
 const Wrapper = styled.main`
@@ -13,15 +13,26 @@ const WrapperPag = styled.div`
   @media screen and (min-width: ${mobile}) {
     justify-content: space-around;
     gap: 24.4rem;
+    margin-top: 2rem;
   }
 `;
 const ContainerCards = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
   margin-top: 2rem;
-  padding: 0 10rem;
+  justify-content: center;
   padding-bottom: 4.5rem;
+  
+  @media screen and (min-width: ${tablet}){
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 10rem;
+    gap: 0.5rem;
+  }
+  @media screen and (min-width: ${laptop}){
+    gap: 2rem;
+  }
 `;
 
 const HiddenDiv = styled.div`
