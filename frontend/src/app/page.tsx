@@ -3,60 +3,33 @@ import Card from "@/components/Card";
 import Pagination from "@/components/Pagination";
 import ProductsMenu from "@/components/ProductsMenu";
 import { ContainerCards, HiddenDiv, Wrapper, WrapperPag } from "@/styles/Home";
+import { getAllProducts } from "@/queries/get-all-products";
+import { ResponseData } from "@/types/Home";
+import { useQuery } from "react-query";
+import { useFilter } from "@/hooks/useFilter";
 
 export default function Home() {
+  const {data, isLoading} = useFilter();
   return (
     <Wrapper>
       <ProductsMenu />
       <ContainerCards>
-        <Card
-          id="1"
-          image_url="https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg"
-          name="caneca"
-          description="Caneca para Devs"
-        />
-        <Card
-          id="1"
-          image_url="https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg"
-          name="caneca"
-          description="Caneca para Devs"
-        />
-        <Card
-          id="1"
-          image_url="https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg"
-          name="caneca"
-          description="Caneca para Devs"
-        />
-        <Card
-          id="1"
-          image_url="https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg"
-          name="caneca"
-          description="Caneca para Devs"
-        />
-        <Card
-          id="1"
-          image_url="https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg"
-          name="caneca"
-          description="Caneca para Devs"
-        />
-        <Card
-          id="1"
-          image_url="https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg"
-          name="caneca"
-          description="Caneca para Devs"
-        />
-        <Card
-          id="1"
-          image_url="https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg"
-          name="caneca"
-          description="Caneca para Devs"
-        />
-        <Card
-          id="1"
-          image_url="https://storage.googleapis.com/xesque-dev/challenge-images/caneca-06.jpg"
-          name="caneca"
-          description="Caneca para Devs"
-        />
+        {!isLoading ? (
+          data?.allProducts.map(
+            ({ id, name, image_url, description, price_in_cents }) => (
+              <Card
+                key={id}
+                id={id}
+                name={name}
+                description={description}
+                image_url={image_url}
+                price={price_in_cents}
+              />
+            )
+          )
+        ) : (
+          <p>Carregando...</p>
+        )}
       </ContainerCards>
       <WrapperPag>
         <HiddenDiv />
