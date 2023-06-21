@@ -24,13 +24,10 @@ const ContainerCards = styled.div`
   justify-content: center;
   padding-bottom: 4.5rem;
   
-  @media screen and (min-width: ${tablet}){
+  @media screen and (min-width: ${laptop}){
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     padding: 0 10rem;
-    gap: 0.5rem;
-  }
-  @media screen and (min-width: ${laptop}){
     gap: 2rem;
   }
 `;

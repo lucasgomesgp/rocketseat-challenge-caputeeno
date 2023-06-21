@@ -17,6 +17,8 @@ const Description = styled.p`
   padding-bottom: 0.5rem;
   padding-right: 0.75rem;
   padding-left: 0.75rem;
+  max-width: 256px;
+
 `;
 const Price = styled.p`
   color: ${COLORS.FONT.black};

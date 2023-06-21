@@ -2,15 +2,20 @@ import styled from "styled-components";
 import Link from "next/link";
 import { COLORS } from "@/utils/colors-guide";
 import { saira_stencil } from "@/fonts/siara-stencil";
+import { laptop } from "@/utils/break-points";
 
 const Menu = styled.header`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding: 1.18rem 8rem;
+  flex-direction: column;
+  padding-bottom:1.18rem;
   background-color: ${COLORS.SHAPES.one};
   
+  @media screen and (min-width: ${laptop}) {
+    padding: 1.18rem 8rem;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 const SearchArea = styled.div`
@@ -18,6 +23,7 @@ const SearchArea = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 1.5rem;
 `;
 

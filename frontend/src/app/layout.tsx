@@ -1,5 +1,7 @@
 import { Saira } from "next/font/google";
 import { Header } from "@/components/Header";
+import { Providers } from "@/components/Providers";
+import 'react-toastify/dist/ReactToastify.css';
 import "./globals.css";
 
 const saira = Saira({
@@ -20,8 +22,10 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className={saira.className}>
-        <Header />
-        {children}
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );
