@@ -9,7 +9,6 @@ function GET_PRODUCTS(filter?: string) {
         description
         image_url
         category
-        created_at
         price_in_cents
       }
     }
@@ -25,7 +24,6 @@ function GET_PRODUCT(id: string) {
     description,
     image_url,
     category,
-    created_at,
     price_in_cents,
   }
 }

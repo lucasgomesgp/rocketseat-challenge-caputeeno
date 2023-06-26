@@ -10,15 +10,17 @@ import {
 interface Props {
   children: ReactNode;
 }
-
+export interface ProductItem extends Product{
+  quantity: number;
+}
 interface IProductContext {
-  items: Array<Product>;
-  setItems: Dispatch<SetStateAction<Product[]>>;
+  items: Array<ProductItem>;
+  setItems: Dispatch<SetStateAction<ProductItem[]>>;
 }
 export const ProductContext = createContext({} as IProductContext);
 
 export function ProductProvider({ children }: Props) {
-  const [items, setItems] = useState([{} as Product]);
+  const [items, setItems] = useState<ProductItem[]>([]);
   return (
     <ProductContext.Provider value={{ items, setItems }}>
       {children}

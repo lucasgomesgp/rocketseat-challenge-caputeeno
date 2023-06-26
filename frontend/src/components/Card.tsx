@@ -18,7 +18,7 @@ export default function Card({
   const money = price / 100;
   return (
     <Container href={`/product/${id}`}>
-      <Img src={image_url} alt={name} width={256} height={300} />
+      <Img src={image_url} alt={name} width={256} height={300} priority />
       <Description>{description}</Description>
       <Price>{formatToMoney(money)}</Price>
     </Container>

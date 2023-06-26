@@ -3,9 +3,6 @@ import Card from "@/components/Card";
 import Pagination from "@/components/Pagination";
 import ProductsMenu from "@/components/ProductsMenu";
 import { ContainerCards, HiddenDiv, Wrapper, WrapperPag } from "@/styles/Home";
-import { getAllProducts } from "@/queries/get-all-products";
-import { ResponseData } from "@/types/Home";
-import { useQuery } from "react-query";
 import { useFilter } from "@/hooks/useFilter";
 
 export default function Home() {

@@ -13,12 +13,12 @@ export function Providers({ children }: Props) {
   const client = new QueryClient();
   return (
     <QueryClientProvider client={client}>
-      <ProductProvider>
-        <FilterProvider>
+      <FilterProvider>
+        <ProductProvider>
           <ToastContainer />
           {children}
-        </FilterProvider>
-      </ProductProvider>
+        </ProductProvider>
+      </FilterProvider>
     </QueryClientProvider>
   );
 }
