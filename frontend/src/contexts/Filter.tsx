@@ -13,27 +13,41 @@ import { useQuery } from "react-query";
 interface Props {
   children: ReactNode;
 }
-
+interface QueryOptions {
+  filterQuery: string;
+  pageOfPagination: number;
+}
 interface IFilterContext {
   data: ResponseData | undefined;
   isLoading: boolean;
   error: Error | null;
-  filterQuery: string;
-  setFilterQuery: Dispatch<SetStateAction<string>>;
+  queryOptions: QueryOptions;
+  setQueryOptions: Dispatch<
+    SetStateAction<QueryOptions>
+  >;
 }
 export const FilterContext = createContext({} as IFilterContext);
 
 export function FilterProvider({ children }: Props) {
-  const [filterQuery, setFilterQuery] = useState("");
+  const [queryOptions, setQueryOptions] = useState({
+    filterQuery: "",
+    pageOfPagination: 1,
+  });
   const { data, refetch, error, isLoading } = useQuery<ResponseData, Error>({
     queryKey: "products",
-    queryFn: () => getAllProducts(filterQuery),
+    queryFn: () =>
+      getAllProducts(
+        queryOptions.filterQuery,
+        `(page: ${queryOptions.pageOfPagination}, perPage: 10)`
+      ),
   });
   useEffect(() => {
     refetch();
-  }, [filterQuery, refetch]);
+  }, [queryOptions, refetch]);
   return (
-    <FilterContext.Provider value={{ data, error, isLoading, filterQuery, setFilterQuery }}>
+    <FilterContext.Provider
+      value={{ data, error, isLoading, queryOptions, setQueryOptions }}
+    >
       {children}
     </FilterContext.Provider>
   );
