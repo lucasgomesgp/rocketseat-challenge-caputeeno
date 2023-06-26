@@ -11,10 +11,11 @@ import {
   CartItems,
   CircleCountItemsInCart,
 } from "@/styles/Header";
+import { useProduct } from "@/hooks/useProduct";
 import { useStorage } from "@/hooks/useStorage";
 
 export function Header() {
-  const { items } = useStorage("cartItems");
+  const { items } = useStorage();
   return (
     <Menu>
       <Title href={"/"}>capputeeno</Title>

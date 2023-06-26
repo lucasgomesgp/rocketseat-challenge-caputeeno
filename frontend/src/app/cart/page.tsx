@@ -3,6 +3,7 @@
 import BackToHome from "@/components/BackToHome";
 import CartItem from "@/components/CartItem";
 import ItemSummary from "@/components/ItemSummary";
+import { useProduct } from "@/hooks/useProduct";
 import {
   Container,
   WrapperItems,
@@ -19,29 +20,76 @@ import {
   Bold,
 } from "@/styles/Cart";
 import { formatToMoney } from "@/utils/format-money";
+import { useEffect, useState } from "react";
 
 export default function Cart() {
+  const { items, getSubTotalPrice, getQuantityOfProducts } = useProduct();
+
+  const [values, setValues] = useState({
+    priceOfSubTotal: 0,
+    totalItems: 0,
+  });
+
+  const deliveryTax = 40;
+
+  function handleGetValues() {
+    setValues({
+      priceOfSubTotal: getSubTotalPrice(),
+      totalItems: getQuantityOfProducts(),
+    });
+  }
+
+  useEffect(() => {
+    handleGetValues();
+  }, [items]);
   return (
     <Container>
       <BackToHome />
       <Texts>
         <Title>Seu carrinho</Title>
         <Price>
-          Total (3 produtos) <Bold>{formatToMoney(161)}</Bold>
+          Total ({values.totalItems} produtos){" "}
+          <Bold>{formatToMoney(values.priceOfSubTotal)}</Bold>
         </Price>
       </Texts>
       <WrapperItems>
-          <ItemsOnCart>
-            <CartItem />
-            <CartItem />
-            <CartItem />
-          </ItemsOnCart>
+        <ItemsOnCart>
+          {items.map(
+            ({
+              id,
+              name,
+              description,
+              image_url,
+              price_in_cents,
+              quantity,
+              category,
+            }) => (
+              <CartItem
+                key={id + "," + image_url}
+                id={id}
+                name={name}
+                description={description}
+                image_url={image_url}
+                price={price_in_cents}
+                quantity={quantity}
+                category={category}
+              />
+            )
+          )}
+        </ItemsOnCart>
         <CheckoutArea>
           <Summary>
             <CentralTitle>Resumo do pedido</CentralTitle>
-            <ItemSummary price={161} text="Subtotal de produtos" />
-            <ItemSummary price={40} text="Entrega" />
-            <ItemSummary price={201} text="Total" isBold={true} />
+            <ItemSummary
+              price={values.priceOfSubTotal}
+              text="Subtotal de produtos"
+            />
+            <ItemSummary price={deliveryTax} text="Entrega" />
+            <ItemSummary
+              price={values.priceOfSubTotal + deliveryTax}
+              text="Total"
+              isBold={true}
+            />
             <CheckoutBtn>Finalizar a compra</CheckoutBtn>
           </Summary>
           <LinksForHelp>
