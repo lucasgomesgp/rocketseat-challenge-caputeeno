@@ -32,20 +32,21 @@ interface Props {
 }
 
 export default function Product({ params }: Props) {
-  const { items, setItemOnStorage } = useStorage("products");
-  const { data, error, isLoading } = useQuery<ResponseData, Error>({
+  const { setItemOnStorage } = useStorage();
+  const { data, isLoading } = useQuery<ResponseData, Error>({
     queryKey: "product",
     queryFn: () => getSpecificProduct(params.id),
   });
+
   function handleAddToCart() {
     setItemOnStorage({
       id: params.id,
       category: data?.allProducts[0].category || "",
-      created_at: data?.allProducts[0].created_at || "",
       description: data?.allProducts[0].description || "",
       image_url: data?.allProducts[0].image_url || "",
       name: data?.allProducts[0].name || "",
       price_in_cents: data?.allProducts[0].price_in_cents || 0,
+      quantity: 1,
     });
 
     toast.success("Produto adicionado com sucesso!", {
