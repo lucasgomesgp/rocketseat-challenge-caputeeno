@@ -13,7 +13,7 @@ const Options = styled.div`
   display: flex;
 `;
 
-const ProductName = styled.button`
+const ProductName = styled.button<{ isBold: boolean }>`
   background-color: transparent;
   border: none;
   text-transform: uppercase;
@@ -21,10 +21,15 @@ const ProductName = styled.button`
   padding: 1rem;
   color: ${COLORS.ICONS.gray_icon};
   transition: 100ms all ease;
-
-  &:hover{
+  &:hover {
     border-bottom: 4px solid ${COLORS.OTHERS.orange_low};
   }
+  ${(props) =>
+    props.isBold
+      ? `
+      border-bottom: 4px solid ${COLORS.OTHERS.orange_low};
+      `
+      : ""};
 `;
 
 const ContainerFilters = styled.div`
@@ -45,8 +50,6 @@ const Option = styled.option`
   outline: none;
   background-color: ${COLORS.SHAPES.one};
 `;
-
-
 
 export {
   ContainerFilters,

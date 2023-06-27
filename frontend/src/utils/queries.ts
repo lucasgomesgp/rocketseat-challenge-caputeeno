@@ -1,6 +1,7 @@
 import { gql } from "graphql-request";
 
 function GET_PRODUCTS(filter?: string, pagination?: string) {
+ 
   return gql`
     query GetProducts {
       allProducts ${filter ? `${filter}` : `${pagination}`}{

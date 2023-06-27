@@ -22,9 +22,7 @@ interface IFilterContext {
   isLoading: boolean;
   error: Error | null;
   queryOptions: QueryOptions;
-  setQueryOptions: Dispatch<
-    SetStateAction<QueryOptions>
-  >;
+  setQueryOptions: Dispatch<SetStateAction<QueryOptions>>;
 }
 export const FilterContext = createContext({} as IFilterContext);
 
@@ -37,12 +35,13 @@ export function FilterProvider({ children }: Props) {
     queryKey: "products",
     queryFn: () =>
       getAllProducts(
-        queryOptions.filterQuery,
-        `(page: ${queryOptions.pageOfPagination}, perPage: 10)`
+        `(page: ${queryOptions.pageOfPagination}, perPage: 10)`,
+        queryOptions.filterQuery
       ),
   });
   useEffect(() => {
     refetch();
+    console.log(queryOptions.filterQuery);
   }, [queryOptions, refetch]);
   return (
     <FilterContext.Provider

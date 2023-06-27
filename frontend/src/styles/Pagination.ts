@@ -15,6 +15,8 @@ const NumberPagination = styled.button<{ isBold?: boolean }>`
   color: ${COLORS.ICONS.gray_icon};
   border-radius: 8px;
   transition: 100ms all ease;
+
+ 
   ${(props) =>
     props.isBold
       ? `
@@ -26,6 +28,12 @@ const NumberPagination = styled.button<{ isBold?: boolean }>`
   &:hover {
     border: 2px solid ${COLORS.OTHERS.orange_low};
     background-color: transparent;
+  }
+  &:disabled{
+    cursor: not-allowed;
+    &:hover{
+      border: none;
+    }
   }
 `;
 
