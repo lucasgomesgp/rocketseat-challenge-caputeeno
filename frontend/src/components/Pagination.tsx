@@ -5,13 +5,6 @@ export default function Pagination() {
   const numbersForPagination = [1, 2, 3, 4, 5];
   const { queryOptions, setQueryOptions } = useFilter();
   function handlePagination(numberOfPage: number) {
-    if(queryOptions.pageOfPagination >= 5){
-      setQueryOptions({
-        filterQuery:"",
-        pageOfPagination: 1,
-      });
-      return;
-    }
     setQueryOptions({
       filterQuery: "",
       pageOfPagination: numberOfPage,
@@ -34,6 +27,7 @@ export default function Pagination() {
         onClick={() => {
           handlePagination(queryOptions.pageOfPagination - 1);
         }}
+        disabled={queryOptions.pageOfPagination === 1}
       >
         {"<"}
       </NumberPagination>
@@ -41,6 +35,7 @@ export default function Pagination() {
         onClick={() => {
           handlePagination(queryOptions.pageOfPagination + 1);
         }}
+        disabled={queryOptions.pageOfPagination === 5}
       >
         {">"}
       </NumberPagination>
