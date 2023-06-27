@@ -17,7 +17,7 @@ export default function Pagination() {
           onClick={() => {
             handlePagination(number);
           }}
-          isBold={number === queryOptions.pageOfPagination}
+          $isBold={number === queryOptions.pageOfPagination}
           key={number}
         >
           {number}

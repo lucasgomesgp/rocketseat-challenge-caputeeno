@@ -6,7 +6,7 @@ const ContainerPagination = styled.div`
   gap: 2px;
 `;
 
-const NumberPagination = styled.button<{ isBold?: boolean }>`
+const NumberPagination = styled.button<{ $isBold?: boolean }>`
   background-color: ${COLORS.ICONS.gray_button};
   border: none;
   width: 32px;
@@ -18,7 +18,7 @@ const NumberPagination = styled.button<{ isBold?: boolean }>`
 
  
   ${(props) =>
-    props.isBold
+    props.$isBold
       ? `
       color: ${COLORS.OTHERS.orange_low};
       border: 2px solid ${COLORS.OTHERS.orange_low};

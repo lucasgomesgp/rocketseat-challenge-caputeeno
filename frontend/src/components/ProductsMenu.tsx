@@ -50,7 +50,8 @@ export default function ProductsMenu() {
             onClick={() => {
               handleFilterProduct({ type: option.type });
             }}
-            isBold={option.type === filter.type}
+            $isBold={option.type === filter.type}
+            key={option.type}
           >
             {option.name}
           </ProductName>

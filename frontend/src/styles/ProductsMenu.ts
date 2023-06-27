@@ -13,7 +13,7 @@ const Options = styled.div`
   display: flex;
 `;
 
-const ProductName = styled.button<{ isBold: boolean }>`
+const ProductName = styled.button<{ $isBold: boolean }>`
   background-color: transparent;
   border: none;
   text-transform: uppercase;
@@ -25,7 +25,7 @@ const ProductName = styled.button<{ isBold: boolean }>`
     border-bottom: 4px solid ${COLORS.OTHERS.orange_low};
   }
   ${(props) =>
-    props.isBold
+    props.$isBold
       ? `
       border-bottom: 4px solid ${COLORS.OTHERS.orange_low};
       `

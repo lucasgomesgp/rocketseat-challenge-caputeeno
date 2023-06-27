@@ -21,9 +21,8 @@ import {
 import { ResponseData } from "@/types/Home";
 import { formatToMoney } from "@/utils/format-money";
 import { ShoppingBagOpen } from "@phosphor-icons/react";
-import { useState } from "react";
+import { toast } from "react-hot-toast";
 import { useQuery } from "react-query";
-import { toast } from "react-toastify";
 
 interface Props {
   params: {
@@ -49,16 +48,7 @@ export default function Product({ params }: Props) {
       quantity: 1,
     });
 
-    toast.success("Produto adicionado com sucesso!", {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+    toast.success("Produto adicionado com sucesso!");
   }
   return (
     <Container>
