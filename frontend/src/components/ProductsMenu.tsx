@@ -8,37 +8,53 @@ import {
 } from "@/styles/ProductsMenu";
 import Pagination from "./Pagination";
 import { useFilter } from "@/hooks/useFilter";
+import { useState } from "react";
 
+interface Types {
+  type: "" | "t-shirts" | "mugs";
+}
+interface TypesMenu {
+  name: string;
+  type: "" | "t-shirts" | "mugs";
+}
 export default function ProductsMenu() {
-  const {setFilterQuery} = useFilter();
-  async function handleFilterProduct(filter?: string) {
-    const query = filter ? `(filter:{category:"${filter}"})` : "";
-    setFilterQuery(query);
+  const { setQueryOptions } = useFilter();
+  const [filter, setFilter] = useState<Types>({ type: "" });
+  const menuOptions : TypesMenu[] = [
+    {
+      name: "Todos os produtos",
+      type: "",
+    },
+    {
+      name: "Camisetas",
+      type: "t-shirts",
+    },
+    {
+      name: "Canecas",
+      type: "mugs",
+    },
+  ];
+  async function handleFilterProduct(filter: Types) {
+    setFilter({ type: filter.type });
+    const query = filter.type ? `(filter:{category:"${filter.type}"})` : "";
+    setQueryOptions({
+      filterQuery: query,
+      pageOfPagination: 1,
+    });
   }
   return (
     <ContainerMenu>
       <Options>
-        <ProductName
-          onClick={() => {
-            handleFilterProduct();
-          }}
-        >
-          Todos os produtos
-        </ProductName>
-        <ProductName
-          onClick={() => {
-            handleFilterProduct("t-shirts");
-          }}
-        >
-          Camisetas
-        </ProductName>
-        <ProductName
-          onClick={() => {
-            handleFilterProduct("mugs");
-          }}
-        >
-          Canecas
-        </ProductName>
+        {menuOptions.map((option) => (
+          <ProductName
+            onClick={() => {
+              handleFilterProduct({ type: option.type });
+            }}
+            isBold={option.type === filter.type}
+          >
+            {option.name}
+          </ProductName>
+        ))}
       </Options>
       <ContainerFilters>
         <FilterBy>
