@@ -8,19 +8,19 @@ import {
 } from "@/styles/ProductsMenu";
 import Pagination from "./Pagination";
 import { useFilter } from "@/hooks/useFilter";
-import { useState } from "react";
+import { BaseSyntheticEvent, useState } from "react";
 
 interface Types {
   type: "" | "t-shirts" | "mugs";
 }
-interface TypesMenu {
+interface TypesMenu extends Types{
   name: string;
-  type: "" | "t-shirts" | "mugs";
 }
 export default function ProductsMenu() {
+  const todayTimestamp = new Date().toISOString();
   const { setQueryOptions } = useFilter();
   const [filter, setFilter] = useState<Types>({ type: "" });
-  const menuOptions : TypesMenu[] = [
+  const menuOptions: TypesMenu[] = [
     {
       name: "Todos os produtos",
       type: "",
@@ -34,13 +34,22 @@ export default function ProductsMenu() {
       type: "mugs",
     },
   ];
-  async function handleFilterProduct(filter: Types) {
+  function handleFilterProduct(filter: Types) {
     setFilter({ type: filter.type });
     const query = filter.type ? `(filter:{category:"${filter.type}"})` : "";
     setQueryOptions({
       filterQuery: query,
       pageOfPagination: 1,
     });
+  }
+  function handleOrganizeProductsByFilter(event: BaseSyntheticEvent) {
+    const response = event.target.value;
+    const filterQuery = response ? `(filter:{${response}})` : "";
+    setQueryOptions({
+      filterQuery,
+      pageOfPagination: 1,
+    })
+
   }
   return (
     <ContainerMenu>
@@ -58,12 +67,18 @@ export default function ProductsMenu() {
         ))}
       </Options>
       <ContainerFilters>
-        <FilterBy>
-          <Option value="none">Organizar por</Option>
-          <Option value="new">Novidades</Option>
-          <Option value="highToLowPrice">Preço: Maior - menor</Option>
-          <Option value="lowToHighPrice">Preço: Menor - maior</Option>
-          <Option value="bestSellers">Mais vendidos</Option>
+        <FilterBy
+          onChange={(event) => {
+            handleOrganizeProductsByFilter(event);
+          }}
+        >
+          <Option value="">Organizar por</Option>
+          <Option value={`created_at_lt: "${todayTimestamp}"`}>
+            Novidades
+          </Option>
+          <Option value="price_in_cents_gt: 5000">Preço: Maior - menor</Option>
+          <Option value="price_in_cents_lt: 5000">Preço: Menor - maior</Option>
+          <Option value="">Mais vendidos</Option>
         </FilterBy>
         <Pagination />
       </ContainerFilters>

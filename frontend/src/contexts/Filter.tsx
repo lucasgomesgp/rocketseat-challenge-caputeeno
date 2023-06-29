@@ -41,6 +41,7 @@ export function FilterProvider({ children }: Props) {
   });
   useEffect(() => {
     refetch();
+    console.log(queryOptions.filterQuery);
   }, [queryOptions, refetch]);
   return (
     <FilterContext.Provider
