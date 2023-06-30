@@ -4,17 +4,15 @@ import Pagination from "@/components/Pagination";
 import ProductsMenu from "@/components/ProductsMenu";
 import { ContainerCards, HiddenDiv, Wrapper, WrapperPag } from "@/styles/Home";
 import { useFilter } from "@/hooks/useFilter";
-import { quantityItems } from "@/utils/quantity-items";
-import Skeleton from "@mui/material/Skeleton";
-import Stack from "@mui/material/Stack";
+import {SkeletonUI} from "@/components/SkeletonUI";
 
 export default function Home() {
-  const { data, isLoading } = useFilter();
+  const { data, isLoading, isFetched } = useFilter();
   return (
     <Wrapper>
       <ProductsMenu />
       <ContainerCards>
-        {!isLoading ? (
+        {!isLoading && !isFetched ? (
           data?.allProducts.map(
             ({ id, name, image_url, description, price_in_cents }) => (
               <Card
@@ -28,15 +26,7 @@ export default function Home() {
             )
           )
         ) : (
-          <>
-            {quantityItems.map((qtd) => (
-              <Stack spacing={0.5} key={qtd}>
-                <Skeleton variant="rectangular" width={250} height={180} />
-                <Skeleton variant="text" />
-                <Skeleton variant="text" />
-              </Stack>
-            ))}
-          </>
+          <SkeletonUI />
         )}
       </ContainerCards>
       <WrapperPag>

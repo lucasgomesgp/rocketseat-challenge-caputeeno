@@ -20,6 +20,7 @@ interface QueryOptions {
 interface IFilterContext {
   data: ResponseData | undefined;
   isLoading: boolean;
+  isFetched: boolean;
   error: Error | null;
   queryOptions: QueryOptions;
   setQueryOptions: Dispatch<SetStateAction<QueryOptions>>;
@@ -31,7 +32,7 @@ export function FilterProvider({ children }: Props) {
     filterQuery: "",
     pageOfPagination: 1,
   });
-  const { data, refetch, error, isLoading } = useQuery<ResponseData, Error>({
+  const { data, refetch, error, isLoading ,isFetched } = useQuery<ResponseData, Error>({
     queryKey: "products",
     queryFn: () =>
       getAllProducts(
@@ -45,7 +46,7 @@ export function FilterProvider({ children }: Props) {
   }, [queryOptions, refetch]);
   return (
     <FilterContext.Provider
-      value={{ data, error, isLoading, queryOptions, setQueryOptions }}
+      value={{ data, error, isLoading, isFetched, queryOptions, setQueryOptions }}
     >
       {children}
     </FilterContext.Provider>
