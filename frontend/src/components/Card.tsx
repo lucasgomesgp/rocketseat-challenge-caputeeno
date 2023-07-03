@@ -1,4 +1,5 @@
-import { Container, Description, Img, Price } from "@/styles/Card";
+"use client"
+import { Container, TextArea, Description, Img, Price } from "@/styles/Card";
 import { formatToMoney } from "@/utils/format-money";
 
 interface Props {
@@ -19,8 +20,10 @@ export default function Card({
   return (
     <Container href={`/product/${id}`}>
       <Img src={image_url} alt={name} width={256} height={300} priority />
+      <TextArea>
       <Description>{description}</Description>
       <Price>{formatToMoney(money)}</Price>
+      </TextArea>
     </Container>
   );
 }
