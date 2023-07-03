@@ -1,3 +1,4 @@
+"use client";
 import { getAllProducts } from "@/queries/get-all-products";
 import { ResponseData } from "@/types/Home";
 import {
@@ -5,7 +6,6 @@ import {
   ReactNode,
   SetStateAction,
   createContext,
-  useEffect,
   useState,
 } from "react";
 import { useQuery } from "react-query";
@@ -24,29 +24,41 @@ interface IFilterContext {
   error: Error | null;
   queryOptions: QueryOptions;
   setQueryOptions: Dispatch<SetStateAction<QueryOptions>>;
+  searchedItem: string;
+  setSearchedItem: Dispatch<SetStateAction<string>>;
 }
 export const FilterContext = createContext({} as IFilterContext);
 
 export function FilterProvider({ children }: Props) {
+  const [searchedItem, setSearchedItem] = useState("");
   const [queryOptions, setQueryOptions] = useState({
     filterQuery: "",
     pageOfPagination: 1,
   });
-  const { data, refetch, error, isLoading ,isFetched } = useQuery<ResponseData, Error>({
-    queryKey: "products",
+  const { data, error, isLoading, isFetched } = useQuery<
+    ResponseData,
+    Error
+  >({
+    queryKey: ["products", queryOptions],
     queryFn: () =>
       getAllProducts(
         `(page: ${queryOptions.pageOfPagination}, perPage: 10)`,
-        queryOptions.filterQuery
+        `(${queryOptions.filterQuery}, page: ${queryOptions.pageOfPagination}, perPage: 10)`
       ),
   });
-  useEffect(() => {
-    refetch();
-    console.log(queryOptions.filterQuery);
-  }, [queryOptions, refetch]);
+  
   return (
     <FilterContext.Provider
-      value={{ data, error, isLoading, isFetched, queryOptions, setQueryOptions }}
+      value={{
+        data,
+        searchedItem,
+        setSearchedItem,
+        error,
+        isLoading,
+        isFetched,
+        queryOptions,
+        setQueryOptions,
+      }}
     >
       {children}
     </FilterContext.Provider>

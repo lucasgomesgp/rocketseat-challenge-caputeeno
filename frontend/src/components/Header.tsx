@@ -1,5 +1,5 @@
 "use client";
-import { ShoppingBagOpen, MagnifyingGlass } from "@phosphor-icons/react";
+import { MagnifyingGlass } from "@phosphor-icons/react";
 import { COLORS } from "@/utils/colors-guide";
 import {
   Menu,
@@ -11,24 +11,32 @@ import {
   CartItems,
   CircleCountItemsInCart,
 } from "@/styles/Header";
-import { useProduct } from "@/hooks/useProduct";
 import { useStorage } from "@/hooks/useStorage";
+import { ShoppingBag } from "./icons/ShoppingBag";
+import { useFilter } from "@/hooks/useFilter";
 
 export function Header() {
   const { items } = useStorage();
+  const {searchedItem, setSearchedItem} = useFilter();
   return (
     <Menu>
       <Title href={"/"}>capputeeno</Title>
       <SearchArea>
         <WrapperInput onSubmit={(event) => event.preventDefault()}>
-          <InputSearch placeholder="Procurando por algo específico?" />
+          <InputSearch
+            placeholder="Procurando por algo específico?"
+            value={searchedItem}
+            onChange={(event) => setSearchedItem(event.target.value)}
+          />
           <Button>
             <MagnifyingGlass size={25} color={COLORS.ICONS.gray_icon} />
           </Button>
         </WrapperInput>
         <CartItems href={"/cart"}>
-          <ShoppingBagOpen size={32} color={COLORS.ICONS.gray_icon} />
-          <CircleCountItemsInCart> {items.length || 0}</CircleCountItemsInCart>
+          <ShoppingBag />
+          {items.length > 0 && (
+            <CircleCountItemsInCart>{items.length}</CircleCountItemsInCart>
+          )}
         </CartItems>
       </SearchArea>
     </Menu>

@@ -1,8 +1,30 @@
 import { FilterContext } from "@/contexts/Filter";
-import { useContext } from "react";
+import { useContext, useDeferredValue } from "react";
 
 export function useFilter() {
-  const { data, error, isLoading, isFetched, queryOptions, setQueryOptions } =
-    useContext(FilterContext);
-  return { data, error, isLoading, isFetched, queryOptions, setQueryOptions };
+  const {
+    data,
+    searchedItem,
+    setSearchedItem,
+    error,
+    isLoading,
+    isFetched,
+    queryOptions,
+    setQueryOptions,
+  } = useContext(FilterContext);
+  const searchedItemDeferred = useDeferredValue(searchedItem);
+  const filteredItems = data?.allProducts?.filter((element) =>
+    element.name.toLowerCase().includes(searchedItemDeferred.toLowerCase())
+  );
+
+  return {
+    data: filteredItems,
+    searchedItem,
+    setSearchedItem,
+    error,
+    isLoading,
+    isFetched,
+    queryOptions,
+    setQueryOptions,
+  };
 }

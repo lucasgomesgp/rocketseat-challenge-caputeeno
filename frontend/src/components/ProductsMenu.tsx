@@ -1,3 +1,4 @@
+"use client";
 import {
   ContainerMenu,
   Options,
@@ -8,18 +9,25 @@ import {
 } from "@/styles/ProductsMenu";
 import Pagination from "./Pagination";
 import { useFilter } from "@/hooks/useFilter";
-import { BaseSyntheticEvent, useState } from "react";
+import { useState } from "react";
+import {
+  biggestToLowPrice,
+  byDate,
+  bySales,
+  lowToBiggestPrice,
+} from "@/utils/filters-select";
+import { getFilterOfProduct } from "@/utils/get-filter-of-product";
 
 interface Types {
   type: "" | "t-shirts" | "mugs";
 }
-interface TypesMenu extends Types{
+interface TypesMenu extends Types {
   name: string;
 }
 export default function ProductsMenu() {
-  const todayTimestamp = new Date().toISOString();
   const { setQueryOptions } = useFilter();
   const [filter, setFilter] = useState<Types>({ type: "" });
+  const [currentPriority, setCurrentPriority] = useState("");
   const menuOptions: TypesMenu[] = [
     {
       name: "Todos os produtos",
@@ -34,22 +42,22 @@ export default function ProductsMenu() {
       type: "mugs",
     },
   ];
+
   function handleFilterProduct(filter: Types) {
     setFilter({ type: filter.type });
-    const query = filter.type ? `(filter:{category:"${filter.type}"})` : "";
-    setQueryOptions({
+    const query = getFilterOfProduct(filter.type, currentPriority);
+    setQueryOptions((prev) => ({
+      ...prev,
       filterQuery: query,
-      pageOfPagination: 1,
-    });
+    }));
   }
-  function handleOrganizeProductsByFilter(event: BaseSyntheticEvent) {
-    const response = event.target.value;
-    const filterQuery = response ? `(filter:{${response}})` : "";
-    setQueryOptions({
-      filterQuery,
-      pageOfPagination: 1,
-    })
-
+  function handleChangePriority(value: string) {
+    setCurrentPriority(value);
+    const priorityIsSelected = getFilterOfProduct(filter.type, value);
+    setQueryOptions((prev) => ({
+      ...prev,
+      filterQuery: priorityIsSelected ? priorityIsSelected : value,
+    }));
   }
   return (
     <ContainerMenu>
@@ -69,16 +77,14 @@ export default function ProductsMenu() {
       <ContainerFilters>
         <FilterBy
           onChange={(event) => {
-            handleOrganizeProductsByFilter(event);
+            handleChangePriority(event.target.value);
           }}
         >
           <Option value="">Organizar por</Option>
-          <Option value={`created_at_lt: "${todayTimestamp}"`}>
-            Novidades
-          </Option>
-          <Option value="price_in_cents_gt: 5000">Preço: Maior - menor</Option>
-          <Option value="price_in_cents_lt: 5000">Preço: Menor - maior</Option>
-          <Option value="">Mais vendidos</Option>
+          <Option value={byDate}>Novidades</Option>
+          <Option value={biggestToLowPrice}>Preço: Maior - menor</Option>
+          <Option value={lowToBiggestPrice}>Preço: Menor - maior</Option>
+          <Option value={bySales}>Mais vendidos</Option>
         </FilterBy>
         <Pagination />
       </ContainerFilters>
