@@ -41,6 +41,8 @@ const Button = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
 `;
 
 const Title = styled(Link)`
@@ -73,15 +75,19 @@ const CircleCountItemsInCart = styled.div`
   border-radius: 50%;
   background-color: ${COLORS.OTHERS.delete};
   color: white;
-  width: 25px;
-  height: 25px;
+  width: 17px;
+  height: 17px;
   align-items: center;
   position: absolute;
-  right: -12px;
-  bottom: -10px;
+  right: -8px;
+  bottom: 0px;
   line-height: 25px;
   text-align: center;
   font-weight: 700;
+  font-size:0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 export {
   Menu,

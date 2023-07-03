@@ -18,7 +18,6 @@ const Description = styled.p`
   padding-right: 0.75rem;
   padding-left: 0.75rem;
   max-width: 256px;
-
 `;
 const Price = styled.p`
   color: ${COLORS.FONT.black};
@@ -29,4 +28,8 @@ const Price = styled.p`
   padding-left: 0.75rem;
 `;
 
-export { Container, Img, Description, Price };
+const TextArea = styled.div`
+  backdrop-filter: blur(10px);
+`;
+
+export { Container, TextArea, Img, Description, Price };

@@ -1,4 +1,6 @@
-import { big_laptop, laptop, mobile, tablet } from "@/utils/break-points";
+"use client"
+
+import { mobile } from "@/utils/break-points";
 import styled from "styled-components";
 
 const Wrapper = styled.main`
@@ -16,24 +18,9 @@ const WrapperPag = styled.div`
     margin-top: 2rem;
   }
 `;
-const ContainerCards = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin-top: 2rem;
-  justify-content: center;
-  padding-bottom: 4.5rem;
-  
-  @media screen and (min-width: ${laptop}){
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 0 10rem;
-    gap: 2rem;
-  }
-`;
 
 const HiddenDiv = styled.div`
   display: block;
 `;
 
-export { Wrapper, WrapperPag, ContainerCards, HiddenDiv };
+export { Wrapper, WrapperPag, HiddenDiv };

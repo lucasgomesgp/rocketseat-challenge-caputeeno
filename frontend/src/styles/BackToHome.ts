@@ -1,5 +1,4 @@
 import { COLORS } from "@/utils/colors-guide";
-import Image from "next/image";
 import Link from "next/link";
 import { styled } from "styled-components";
 
@@ -17,6 +16,5 @@ const Paragraph = styled.p`
   font-weight: 400;
 `;
 
-const Img = styled(Image)``;
 
-export { BtnBack, Paragraph, Img };
+export { BtnBack, Paragraph };

@@ -1,4 +1,4 @@
-import { saira } from "@/fonts/siara-stencil";
+import { laptop } from "@/utils/break-points";
 import { COLORS } from "@/utils/colors-guide";
 import styled from "styled-components";
 
@@ -7,20 +7,32 @@ const ContainerMenu = styled.section`
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
+  gap: 2rem;
+
+  @media screen and (min-width: ${laptop}) {
+    gap: 0;
+    padding: 0 130px;
+    justify-content: space-between;
+  }
 `;
 
-const Options = styled.div`
+const Options = styled.ul`
   display: flex;
+  align-items: center;
+  gap: 40px;
 `;
 
-const ProductName = styled.button<{ $isBold: boolean }>`
+const ProductName = styled.li<{ $isBold: boolean }>`
   background-color: transparent;
   border: none;
   text-transform: uppercase;
   cursor: pointer;
-  padding: 1rem;
   color: ${COLORS.ICONS.gray_icon};
   transition: 100ms all ease;
+  font-family: inherit;
+  list-style: none;
+  padding-bottom: 4px;
+  
   &:hover {
     border-bottom: 4px solid ${COLORS.OTHERS.orange_low};
   }
@@ -28,6 +40,8 @@ const ProductName = styled.button<{ $isBold: boolean }>`
     props.$isBold
       ? `
       border-bottom: 4px solid ${COLORS.OTHERS.orange_low};
+      font-weight: 600;
+      color: ${COLORS.FONT.gray}
       `
       : ""};
 `;
@@ -44,6 +58,7 @@ const FilterBy = styled.select`
   border: none;
   background-color: transparent;
   align-self: flex-end;
+  font-family: inherit;
 `;
 
 const Option = styled.option`
