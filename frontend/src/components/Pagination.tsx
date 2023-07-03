@@ -1,3 +1,4 @@
+"use client"
 import { useFilter } from "@/hooks/useFilter";
 import { ContainerPagination, NumberPagination } from "@/styles/Pagination";
 
@@ -5,10 +6,10 @@ export default function Pagination() {
   const numbersForPagination = [1, 2, 3, 4, 5];
   const { queryOptions, setQueryOptions } = useFilter();
   function handlePagination(numberOfPage: number) {
-    setQueryOptions({
-      filterQuery: "",
+    setQueryOptions(prev => ({
+      ...prev,
       pageOfPagination: numberOfPage,
-    });
+    }));
   }
   return (
     <ContainerPagination>
