@@ -1,14 +1,10 @@
-import { BtnBack, Img, Paragraph } from "@/styles/BackToHome";
+import { BtnBack, Paragraph } from "@/styles/BackToHome";
+import { IconBack } from "./icons/IconBack";
 
 export default function BackToHome() {
   return (
     <BtnBack href={"/"}>
-    <Img
-      alt="Icon back home"
-      src="/icons/arrow-back.svg"
-      width={32}
-      height={32}
-    />
+      <IconBack />
     <Paragraph>Voltar</Paragraph>
   </BtnBack>
   )
